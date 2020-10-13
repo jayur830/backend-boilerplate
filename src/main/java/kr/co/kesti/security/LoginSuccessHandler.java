@@ -1,6 +1,7 @@
 package kr.co.kesti.security;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,12 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
             HttpServletRequest request,
             HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
+        request.getSession().removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
 
+        /**
+         * 로그인 성공 시 후처리
+         * */
+
+        response.getWriter().print("{ \"isSuccess\": true }");
     }
 }

@@ -1,0 +1,6 @@
+error:
+  BadCredential:
+  CredentialsExpired:
+  Disabled:
+  AccountExpired:
+  Locked:

@@ -1,5 +1,6 @@
 package kr.co.kesti.domain.entity;
 
+import kr.co.kesti.domain.embed.MemberAuth;
 import kr.co.kesti.domain.embed.MemberInfo;
 import lombok.*;
 
@@ -22,4 +23,5 @@ public class Member {
     private String username;
     private String password;
     private MemberInfo memberInfo;
+    private MemberAuth memberAuth;
 }

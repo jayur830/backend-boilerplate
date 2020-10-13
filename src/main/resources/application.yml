@@ -1,6 +1,8 @@
 spring:
   profiles:
     active: local
+  resources:
+    static-locations: classpath:/
   jpa:
     hibernate:
       ddl-auto: create
