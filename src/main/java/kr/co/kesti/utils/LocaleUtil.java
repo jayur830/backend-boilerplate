@@ -5,7 +5,7 @@ import org.springframework.context.support.MessageSourceAccessor;
 
 import java.util.Locale;
 
-public class LocaleUtils {
+public class LocaleUtil {
     private static MessageSourceAccessor messageSourceAccessor;
 
     public void setMessageSourceAccessor(MessageSourceAccessor _messageSourceAccessor) {

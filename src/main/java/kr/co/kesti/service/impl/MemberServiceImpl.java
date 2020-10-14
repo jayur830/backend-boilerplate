@@ -20,19 +20,19 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void addMember(Member member) {
         String password = member.getPassword();
-        member.withPassword(this.passwordEncoder.encode(password));
-
+        member = member.withPassword(this.passwordEncoder.encode(password));
+        this.memberRepository.save(member);
     }
 
     @Transactional
     @Override
-    public void removeMember(String username) {
-
+    public void removeMember(final String username) {
+        this.memberRepository.removeMemberByUsername(username);
     }
 
     @Override
     public String findUsername(Member member) {
-        return null;
+        return this.memberRepository.findMemberByMemberInfo(member.getMemberInfo()).getUsername();
     }
 
     @Override
