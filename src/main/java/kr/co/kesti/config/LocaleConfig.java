@@ -1,6 +1,6 @@
 package kr.co.kesti.config;
 
-import kr.co.kesti.utils.LocaleUtils;
+import kr.co.kesti.utils.LocaleUtil;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,8 +30,8 @@ public class LocaleConfig {
     }
 
     @Bean
-    public LocaleUtils localeUtils(MessageSourceAccessor messageSourceAccessor) {
-        LocaleUtils localeUtils = new LocaleUtils();
+    public LocaleUtil localeUtils(MessageSourceAccessor messageSourceAccessor) {
+        LocaleUtil localeUtils = new LocaleUtil();
         localeUtils.setMessageSourceAccessor(messageSourceAccessor);
         return localeUtils;
     }
