@@ -50,18 +50,23 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
      * */
     private void postProcess(final String username, final String error) {
         switch (error) {
+            // 아이디 또는 비밀번호를 잘못 입력한 경우
             case AuthStatus.BAD_CREDENTIALS:
 
                 break;
+            // 비밀번호 유효기간이 만료된 경우
             case AuthStatus.CREDENTIALS_EXPIRED:
 
                 break;
+            // 해당 계정이 비활성화된 경우
             case AuthStatus.DISABLED:
 
                 break;
+            // 해당 계정이 만료된 경우
             case AuthStatus.ACCOUNT_EXPIRED:
 
                 break;
+            // 해당 계정이 잠긴 경우
             case AuthStatus.LOCKED:
 
                 break;
