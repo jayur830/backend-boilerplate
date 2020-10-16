@@ -1,4 +1,4 @@
-package co.kesti.smartcity.error;
+package kr.co.kesti.model.statics;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,15 +11,8 @@ public enum ResponseCode {
     UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "인증이 필요합니다."),
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "내부 서버 에러"),
     FAIL_TO_UPLOAD_FILE(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드 실패"),
-    RESOURCE_NOT_FOUND(HttpStatus.INTERNAL_SERVER_ERROR, "데이터가 없습니다"),
-    ;
+    RESOURCE_NOT_FOUND(HttpStatus.INTERNAL_SERVER_ERROR, "데이터가 없습니다"),;
 
     private HttpStatus httpStatus;
     private String message;
-
-
-
-
-
-
 }

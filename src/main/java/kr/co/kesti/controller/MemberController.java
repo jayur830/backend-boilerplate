@@ -29,6 +29,6 @@ public class MemberController {
 
     @PostMapping("/findPassword")
     public void findPassword(Member member) {
-        this.memberService.
+        this.memberService.findPassword(member);
     }
 }
