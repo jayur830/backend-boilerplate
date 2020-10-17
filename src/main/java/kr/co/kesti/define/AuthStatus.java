@@ -1,4 +1,4 @@
-package kr.co.kesti.values;
+package kr.co.kesti.define;
 
 public class AuthStatus {
     public static final String BAD_CREDENTIALS = "BadCredentials";

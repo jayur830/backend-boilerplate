@@ -1,8 +1,10 @@
 package kr.co.kesti.service.impl;
 
 import kr.co.kesti.service.TestApiService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service("testApiService")
 public class TestApiServiceImpl implements TestApiService {
     @Override

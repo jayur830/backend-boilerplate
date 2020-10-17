@@ -1,10 +1,12 @@
 package kr.co.kesti.controller;
 
 import kr.co.kesti.service.TestApiService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/test")
 public class TestApiController {

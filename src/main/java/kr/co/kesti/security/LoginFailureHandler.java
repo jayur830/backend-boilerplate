@@ -1,7 +1,8 @@
 package kr.co.kesti.security;
 
 import kr.co.kesti.utils.LocaleUtil;
-import kr.co.kesti.values.AuthStatus;
+import kr.co.kesti.define.AuthStatus;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Slf4j
 @Component
 public class LoginFailureHandler implements AuthenticationFailureHandler {
     @Override

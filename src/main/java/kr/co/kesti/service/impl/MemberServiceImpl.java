@@ -3,6 +3,7 @@ package kr.co.kesti.service.impl;
 import kr.co.kesti.domain.entity.Member;
 import kr.co.kesti.repository.member.MemberRepository;
 import kr.co.kesti.service.MemberService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +12,7 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
     @Resource(name = "memberRepository")
@@ -37,9 +39,6 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void findPassword(Member member) {
-        Map<String, Object> data = new HashMap<>();
 
-        member = this.memberRepository.findByUsername(member.getUsername());
-        if (member == null)
     }
 }

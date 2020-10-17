@@ -1,5 +1,6 @@
 package kr.co.kesti.security;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
+@Slf4j
 @Component("authenticationProvider")
 public class CustomAuthenticationProvider implements AuthenticationProvider {
     @Resource(name = "passwordEncoder")

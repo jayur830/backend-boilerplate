@@ -6,6 +6,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -21,6 +22,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationSuccessHandler loginSuccessHandler;
     @Resource(name = "loginFailureHandler")
     private AuthenticationFailureHandler loginFailurehandler;
+    @Resource(name = "userDetailsService")
+    private UserDetailsService userDetailsService;
 
     /**
      * 패스워드 암호화 알고리즘
@@ -49,7 +52,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/member/**").permitAll()
                 .antMatchers("/**").permitAll();
 
-        http.authenticationProvider(this.authenticationProvider);
+        /**
+         * 인증
+         * */
+        http.authenticationProvider(this.authenticationProvider)
+                .userDetailsService(this.userDetailsService);
 
         /**
          * 로그인 설정
@@ -70,9 +77,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(this.loginSuccessHandler)
                 .failureHandler(this.loginFailurehandler);
 
+        /**
+         * 로그아웃 설정
+         * */
+        http.logout()
+                .logoutUrl("/auth/logout")
+                .logoutSuccessUrl("/member/login")
+                .invalidateHttpSession(true);
+
         http.csrf()
                 .disable()
                 .authorizeRequests()
                 .antMatchers("/**").permitAll();
+
+        /**
+         * 세션 설정
+         * */
+        http.sessionManagement()
+                .invalidSessionUrl("/member/login")
+                .maximumSessions(1)
+                .expiredUrl("/member/login")
+                .maxSessionsPreventsLogin(true);
     }
 }
