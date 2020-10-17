@@ -10,6 +10,7 @@ import javax.persistence.Embeddable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class MemberAuth {
     private boolean accountExpired;
     private boolean accountLocked;

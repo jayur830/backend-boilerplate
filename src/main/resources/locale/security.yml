@@ -1,6 +1,6 @@
 error:
-  BadCredential:
-  CredentialsExpired:
-  Disabled:
-  AccountExpired:
-  Locked:
+  BadCredential: 아이디나 비밀번호가 맞지 않습니다.\n다시 확인해주세요.
+  CredentialsExpired: 비밀번호 유효기간이 만료 되었습니다.\n관리자에게 문의하세요.
+  Disabled: 계정이 비활성화되었습니다.\n관리자에게 문의하세요.
+  AccountExpired: 계정이 만료되었습니다.\n관리자에게 문의하세요.
+  Locked: 계정이 잠겨있습니다.\n관리자에게 문의하세요.

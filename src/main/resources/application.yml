@@ -10,7 +10,7 @@ spring:
   datasource:
     hikari:
       max-lifetime: 300000
-      maximum-pool-size: 10
+      maximum-pool-size: 30
       minimum-idle: 3
       pool-name: {pool-name}
       schema: {schema}
