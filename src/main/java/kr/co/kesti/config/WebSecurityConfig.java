@@ -20,7 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource(name = "loginSuccessHandler")
     private AuthenticationSuccessHandler loginSuccessHandler;
     @Resource(name = "loginFailureHandler")
-    private AuthenticationFailureHandler loginFailurehandler;
+    private AuthenticationFailureHandler loginFailureHandler;
 
     /**
      * 패스워드 암호화 알고리즘
@@ -44,8 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          * 접근 권한 설정
          * */
         http.authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ROLE_ADMIN")
-                .antMatchers("/main/**").hasRole("ROLE_USER")
+                .antMatchers("/main/**").authenticated()
                 .antMatchers("/member/**").permitAll()
                 .antMatchers("/**").permitAll();
 
@@ -68,7 +67,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                  * */
                 .passwordParameter("password")
                 .successHandler(this.loginSuccessHandler)
-                .failureHandler(this.loginFailurehandler);
+                .failureHandler(this.loginFailureHandler);
+
+        http.logout()
+                .logoutUrl("/auth/logout")
+                .logoutSuccessUrl("/member/login");
 
         http.csrf()
                 .disable()

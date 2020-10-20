@@ -22,8 +22,8 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
       hibernate:
-        show_sql: true
-        format_sql: true
+        jdbc:
+          time_zone: Asia/Seoul
   servlet:
     multipart:
       enabled: true
@@ -40,8 +40,16 @@ spring:
           auth: true
           starttls:
             enable: true
-logging:
-  level: debug
+  messages:
+    basename: static/locale/messages
+    encoding: UTF-8
+    cache-duration: 5
+    fallback-to-system-locale: false
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      log-condition-evaluation-delta: false
 
 ---
 server:
@@ -73,11 +81,16 @@ spring:
   jpa:
     properties:
       hibernate:
+        show_sql: true
+        format_sql: true
 #        dialect: org.hibernate.dialect.MySQL5Dialect
 #        dialect: org.hibernate.dialect.OracleDialect
 #        dialect: org.hibernate.dialect.PostgreSQLDialect
 #        dialect: org.hibernate.dialect.H2Dialect
 #        dialect: org.hibernate.dialect.SQLServerDialect
+logging:
+  level:
+    kr.co.kesti: debug
 
 cors.allowed-domains:
 #  - 192.168.123.456
@@ -114,11 +127,16 @@ spring:
   jpa:
     properties:
       hibernate:
+        show_sql: false
+        format_sql: false
 #        dialect: org.hibernate.dialect.MySQL5Dialect
 #        dialect: org.hibernate.dialect.OracleDialect
 #        dialect: org.hibernate.dialect.PostgreSQLDialect
 #        dialect: org.hibernate.dialect.H2Dialect
 #        dialect: org.hibernate.dialect.SQLServerDialect
+logging:
+  level:
+    kr.co.kesti: info
 
 cors.allowed-domains:
 #  - 192.168.123.456
@@ -152,11 +170,16 @@ spring:
   jpa:
     properties:
       hibernate:
+        show_sql: false
+        format_sql: false
 #        dialect: org.hibernate.dialect.MySQL5Dialect
 #        dialect: org.hibernate.dialect.OracleDialect
 #        dialect: org.hibernate.dialect.PostgreSQLDialect
 #        dialect: org.hibernate.dialect.H2Dialect
 #        dialect: org.hibernate.dialect.SQLServerDialect
+logging:
+  level:
+    kr.co.kesti: info
 
 cors.allowed-domains:
 #  - 192.168.123.456

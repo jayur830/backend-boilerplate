@@ -1,34 +1,68 @@
 package kr.co.kesti.controller;
 
 import kr.co.kesti.domain.entity.Member;
+import kr.co.kesti.model.response.ApiResponse;
 import kr.co.kesti.service.MemberService;
+import kr.co.kesti.vo.MemberVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/member")
 public class MemberController {
     @Resource(name = "memberService")
     private MemberService memberService;
 
-    @PostMapping("/signUp")
-    public void addMember(Member member) {
-        this.memberService.addMember(member);
+    @PostMapping("/checkUsername")
+    public ApiResponse<?> checkUsername(@RequestParam("username") final String username) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("valid", !this.memberService.isExistUser(username));
+
+        return ApiResponse.ok(response);
     }
 
-    @PostMapping("/removeMember")
-    public void removeMember(@RequestParam("username") final String username) {
-        this.memberService.removeMember(username);
+    @PostMapping("/signUp")
+    public ApiResponse<?> signUp(MemberVO memberVO) {
+        this.memberService.signUp(memberVO);
+        return ApiResponse.ok();
     }
 
     @PostMapping("/findUsername")
-    public String findUsername(Member member) {
-        return this.memberService.findUsername(member);
+    public ApiResponse<?> findUsername(
+            @RequestParam("nickname") final String nickname,
+            @RequestParam("email") final String email) {
+        Map<String, Object> response = new HashMap<>();
+
+        Member member = this.memberService.findUsername(nickname, email);
+        response.put("isExist", member != null);
+
+        if (member != null) {
+            StringBuilder s = new StringBuilder();
+            final String username = member.getUsername();
+            for (int i = 0; i < username.length(); ++i)
+                s.append(i < 3 ? username.charAt(i) : '*');
+            response.put("username", s.toString());
+        }
+
+        return ApiResponse.ok(response);
     }
 
     @PostMapping("/findPassword")
-    public void findPassword(Member member) {
-        this.memberService.findPassword(member);
+    public ApiResponse<?> findPassword(
+            @RequestParam("username") final String username,
+            @RequestParam("email") final String email) {
+        Map<String, Object> response = new HashMap<>();
+
+        if (this.memberService.isExistUser(username)) {
+            this.memberService.resetPassword(username, email);
+            response.put("isExist", true);
+        } else response.put("isExist", false);
+
+        return ApiResponse.ok(response);
     }
 }

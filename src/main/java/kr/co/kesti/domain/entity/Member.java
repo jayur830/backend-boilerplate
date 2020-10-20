@@ -1,27 +1,27 @@
 package kr.co.kesti.domain.entity;
 
-import kr.co.kesti.domain.embed.MemberAuth;
 import kr.co.kesti.domain.embed.MemberInfo;
+import kr.co.kesti.security.CustomUserDetails;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
-@With
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = "memberAuth")
 public class Member {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name = "username", length = 200)
+    @Setter
     private String username;
-    private String password;
+
+    @Setter
     private MemberInfo memberInfo;
-    private MemberAuth memberAuth;
+
+    @OneToOne
+    @JoinColumn(name = "username")
+    private CustomUserDetails memberAuth;
 }

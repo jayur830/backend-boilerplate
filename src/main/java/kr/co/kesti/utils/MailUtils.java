@@ -11,22 +11,26 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 
-public class MailUtil {
+public class MailUtils {
     private static JavaMailSender mailSender;
 
     public void setMailSender(JavaMailSender _mailSender) {
         mailSender = _mailSender;
     }
 
-    public void sendEmail(final String from, final String to, final String title, final String contents) {
+    public static void sendEmail(final String from, final String to, final String title, final String contents) {
         sendEmail(from, to, title, contents, null, false);
     }
 
-    public void sendEmail(final String from, final String to, final String title, final String contents, MultipartFile multipartFile) {
+    public static void sendEmail(final String from, final String to, final String title, final String contents, MultipartFile multipartFile) {
         sendEmail(from, to, title, contents, multipartFile, false);
     }
 
-    public void sendEmail(final String from, final String to, final String title, final String contents, MultipartFile multipartFile, boolean isHTML) {
+    public static void sendEmail(final String from, final String to, final String title, final String contents, boolean isHTML) {
+        sendEmail(from, to, title, contents, null, isHTML);
+    }
+
+    public static void sendEmail(final String from, final String to, final String title, final String contents, MultipartFile multipartFile, boolean isHTML) {
         try {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");

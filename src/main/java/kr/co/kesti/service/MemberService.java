@@ -1,11 +1,11 @@
 package kr.co.kesti.service;
 
 import kr.co.kesti.domain.entity.Member;
-import org.springframework.stereotype.Service;
+import kr.co.kesti.vo.MemberVO;
 
 public interface MemberService {
-    void addMember(Member member);
-    void removeMember(final String username);
-    String findUsername(Member member);
-    void findPassword(Member member);
+    boolean isExistUser(final String username);
+    void signUp(MemberVO memberVO);
+    Member findUsername(final String nickname, final String email);
+    void resetPassword(final String username, final String email);
 }

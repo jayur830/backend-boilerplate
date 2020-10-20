@@ -1,6 +1,7 @@
-package kr.co.kesti.values;
+package kr.co.kesti.define;
 
 public class AuthStatus {
+    public static final String USERNAME_NOT_FOUND = "UsernameNotFound";
     public static final String BAD_CREDENTIALS = "BadCredentials";
     public static final String CREDENTIALS_EXPIRED = "CredentialsExpired";
     public static final String DISABLED = "Disabled";

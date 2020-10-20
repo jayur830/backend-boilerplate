@@ -1,7 +1,6 @@
 package kr.co.kesti.config;
 
-import kr.co.kesti.utils.MailUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import kr.co.kesti.utils.MailUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,8 +13,8 @@ public class MailConfig {
     private JavaMailSender mailSender;
 
     @Bean
-    public MailUtil mailUtil() {
-        MailUtil mailUtil = new MailUtil();
+    public MailUtils mailUtil() {
+        MailUtils mailUtil = new MailUtils();
         mailUtil.setMailSender(this.mailSender);
         return mailUtil;
     }
