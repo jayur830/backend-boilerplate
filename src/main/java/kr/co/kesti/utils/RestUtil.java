@@ -14,10 +14,9 @@ import java.nio.charset.StandardCharsets;
  * @author KESTI
  * @since 2020-09-10
  * */
-public class RestUtils {
+public class RestUtil {
     /* 기본 타임아웃 시간 */
-    private static final int DEFAULT_TIME_OUT = 10000; //타임아웃 시간 설정
-
+    private static final int DEFAULT_TIME_OUT = 10000;
 
     /**
      * ****************************************

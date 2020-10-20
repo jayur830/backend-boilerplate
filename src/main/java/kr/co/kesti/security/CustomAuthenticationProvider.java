@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 
 @Slf4j
-@Component(value = "authenticationProvider")
+@Component("authenticationProvider")
 public class CustomAuthenticationProvider implements AuthenticationProvider {
     @Resource(name = "passwordEncoder")
     private PasswordEncoder passwordEncoder;

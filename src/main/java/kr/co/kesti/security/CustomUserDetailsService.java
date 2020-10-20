@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 @Slf4j
-@Service(value = "userDetailsService")
+@Service("userDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
     @Resource(name = "memberAuthRepository")
     private MemberAuthRepository memberAuthRepository;
