@@ -41,7 +41,7 @@ spring:
           starttls:
             enable: true
   messages:
-    basename: static/locale/messages
+    basename: static/messages/messages
     encoding: UTF-8
     cache-duration: 5
     fallback-to-system-locale: false
@@ -50,7 +50,18 @@ spring:
       enabled: true
     restart:
       log-condition-evaluation-delta: false
-
+mybatis:
+  config-location: classpath:/config/mybatis-config.xml
+  mapper-locations: classpath:/mapper/**/*-mapper.xml
+  configuration:
+    cache-enabled: true
+    lazy-loading-enabled: true
+    multiple-result-sets-enabled: true
+    use-column-label: true
+    default-statement-timeout: 1000
+    map-underscore-to-camel-case: true
+    call-setters-on-nulls: true
+    jdbc-type-for-null: null
 ---
 server:
   port: 9000    # 포트 변경 필요
@@ -99,9 +110,6 @@ server:
   port: 9000    # 포트 변경 필요
 spring:
   profiles: dev
-  devtools:
-    livereload:
-      enabled: true
   datasource:
 #    ==== MySQL ====
 #    driver-class-name: com.mysql.cj.jdbc.Driver

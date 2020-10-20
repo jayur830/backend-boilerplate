@@ -1,5 +1,6 @@
 package kr.co.kesti.service.impl;
 
+import kr.co.kesti.domain.embed.MemberInfo;
 import kr.co.kesti.domain.entity.Member;
 import kr.co.kesti.repository.member.MemberAuthRepository;
 import kr.co.kesti.repository.member.MemberRepository;
@@ -43,8 +44,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member findUsername(final String nickname, final String email) {
-        return this.memberRepository.findByNicknameAndEmail(nickname, email);
+    public Member findUsername(MemberInfo memberInfo) {
+        return this.memberRepository.findByMemberInfo(memberInfo);
     }
 
     @Transactional

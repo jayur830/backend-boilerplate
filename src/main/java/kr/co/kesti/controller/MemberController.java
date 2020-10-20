@@ -1,5 +1,6 @@
 package kr.co.kesti.controller;
 
+import kr.co.kesti.domain.embed.MemberInfo;
 import kr.co.kesti.domain.entity.Member;
 import kr.co.kesti.model.response.ApiResponse;
 import kr.co.kesti.service.MemberService;
@@ -33,12 +34,10 @@ public class MemberController {
     }
 
     @PostMapping("/findUsername")
-    public ApiResponse<?> findUsername(
-            @RequestParam("nickname") final String nickname,
-            @RequestParam("email") final String email) {
+    public ApiResponse<?> findUsername(MemberInfo memberInfo) {
         Map<String, Object> response = new HashMap<>();
 
-        Member member = this.memberService.findUsername(nickname, email);
+        Member member = this.memberService.findUsername(memberInfo);
         response.put("isExist", member != null);
 
         if (member != null) {

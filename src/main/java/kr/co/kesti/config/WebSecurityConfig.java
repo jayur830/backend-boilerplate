@@ -1,5 +1,6 @@
 package kr.co.kesti.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -16,6 +17,9 @@ import javax.annotation.Resource;
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Value("${cors.allowed-domains}")
+    private String corsAllowedDomains;
+
     @Resource(name = "authenticationProvider")
     private AuthenticationProvider authenticationProvider;
     @Resource(name = "loginSuccessHandler")
@@ -44,14 +48,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         /**
-         * 접근 권한 설정
-         * */
-        http.authorizeRequests()
-                .antMatchers("/main/**").authenticated()
-                .antMatchers("/member/**").permitAll()
-                .antMatchers("/**").permitAll();
-
-        /**
          * 인증
          * */
         http.authenticationProvider(this.authenticationProvider)
@@ -76,10 +72,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(this.loginSuccessHandler)
                 .failureHandler(this.loginFailureHandler);
 
-        http.logout()
-                .logoutUrl("/auth/logout")
-                .logoutSuccessUrl("/member/login");
-
         /**
          * 로그아웃 설정
          * */
@@ -88,6 +80,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/member/login")
                 .invalidateHttpSession(true);
 
+        /**
+         * CSRF 설정
+         * */
         http.csrf()
                 .disable()
                 .authorizeRequests()
