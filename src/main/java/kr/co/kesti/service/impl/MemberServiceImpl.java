@@ -41,7 +41,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public boolean isExistUser(final String username) {
-        return this.memberRepository.countByUsername(username) != 0;
+        return this.memberRepository.findByUsername(username) != null;
     }
 
     @Transactional

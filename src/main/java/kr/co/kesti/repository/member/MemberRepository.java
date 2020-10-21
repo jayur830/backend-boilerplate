@@ -8,9 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, String> {
-    long countByUsername(final String username);
     Member findByUsername(final String username);
-
-    @Query("select m from Member m where m.memberInfo = :memberInfo")
     Member findByMemberInfo(MemberInfo memberInfo);
 }

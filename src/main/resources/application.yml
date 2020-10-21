@@ -94,7 +94,7 @@ logging:
   level:
     kr.co.kesti: debug
 cors:
-  allowed-domains: {url}
+  allowed-domains: http://{host}:{port}
 ---
 server:
   port: {dev-port}
@@ -136,7 +136,7 @@ logging:
   level:
     kr.co.kesti: info
 cors:
-  allowed-domains: {url}
+  allowed-domains: http://{host}:{port}
 ---
 server:
   port: {prd-port}
@@ -178,4 +178,4 @@ logging:
   level:
     kr.co.kesti: info
 cors:
-  allowed-domains: {url}
+  allowed-domains: http://{host}:{port}
