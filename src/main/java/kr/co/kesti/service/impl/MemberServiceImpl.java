@@ -2,9 +2,9 @@ package kr.co.kesti.service.impl;
 
 import kr.co.kesti.domain.embed.MemberInfo;
 import kr.co.kesti.domain.entity.Member;
+import kr.co.kesti.domain.entity.MemberAuth;
 import kr.co.kesti.repository.member.MemberAuthRepository;
 import kr.co.kesti.repository.member.MemberRepository;
-import kr.co.kesti.security.CustomUserDetails;
 import kr.co.kesti.service.MemberService;
 import kr.co.kesti.utils.CryptoUtils;
 import kr.co.kesti.utils.MailUtils;
@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 @Slf4j
 @Service("memberService")
@@ -29,6 +30,11 @@ public class MemberServiceImpl implements MemberService {
     private MemberAuthRepository memberAuthRepository;
 
     @Override
+    public MemberAuth findByUsername(final String username) {
+        return this.memberAuthRepository.findByUsername(username);
+    }
+
+    @Override
     public boolean isExistUser(final String username) {
         return this.memberRepository.countByUsername(username) != 0;
     }
@@ -38,7 +44,7 @@ public class MemberServiceImpl implements MemberService {
     public void signUp(MemberVO memberVO) {
         memberVO.setPassword(this.passwordEncoder.encode(memberVO.getPassword()));
         Member member = memberVO.toMember();
-        CustomUserDetails memberAuth = memberVO.toMemberAuth();
+        MemberAuth memberAuth = memberVO.toMemberAuth();
         this.memberRepository.save(member);
         this.memberAuthRepository.save(memberAuth);
     }
@@ -53,16 +59,20 @@ public class MemberServiceImpl implements MemberService {
     public void resetPassword(final String username, final String email) {
         final String newPassword = RandomStringUtils.randomAlphanumeric(10);
 
-        String emailContents = ResourceUtils.readText("/templates/WEB-INF/views/templates/findPasswordHTML.html");
-        emailContents = emailContents.replace("${newPassword}", newPassword);
-        MailUtils.sendEmail(
-                "aimakers@gmail.com",
-                email,
-                "[AIMakers] 임시 비밀번호 안내",
-                emailContents,
-                true);
+        try {
+            String emailContents = ResourceUtils.readText("/templates/findPasswordHTML.html");
+            emailContents = emailContents.replace("${newPassword}", newPassword);
+            MailUtils.sendEmail(
+                    "kesti@gmail.com",
+                    email,
+                    "Title",
+                    emailContents,
+                    true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        CustomUserDetails memberAuth = this.memberAuthRepository.findByUsername(username);
+        MemberAuth memberAuth = this.memberAuthRepository.findByUsername(username);
         memberAuth.setPassword(this.passwordEncoder.encode(CryptoUtils.encryptSHA256(newPassword)));
         this.memberAuthRepository.save(memberAuth);
     }

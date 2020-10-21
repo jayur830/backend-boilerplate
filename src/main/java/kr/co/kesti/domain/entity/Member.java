@@ -1,7 +1,6 @@
 package kr.co.kesti.domain.entity;
 
 import kr.co.kesti.domain.embed.MemberInfo;
-import kr.co.kesti.security.CustomUserDetails;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,7 +13,7 @@ import javax.persistence.*;
 @ToString(exclude = "memberAuth")
 public class Member {
     @Id
-    @Column(name = "username", length = 200)
+    @Column(length = 200)
     @Setter
     private String username;
 
@@ -23,5 +22,5 @@ public class Member {
 
     @OneToOne
     @JoinColumn(name = "username")
-    private CustomUserDetails memberAuth;
+    private MemberAuth memberAuth;
 }

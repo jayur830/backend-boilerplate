@@ -3,7 +3,7 @@ package kr.co.kesti.vo;
 import kr.co.kesti.define.Role;
 import kr.co.kesti.domain.embed.MemberInfo;
 import kr.co.kesti.domain.entity.Member;
-import kr.co.kesti.security.CustomUserDetails;
+import kr.co.kesti.domain.entity.MemberAuth;
 import lombok.*;
 
 @Getter
@@ -15,7 +15,7 @@ import lombok.*;
 public class MemberVO {
     private String username;
     private String password;
-    private String nickname;
+    private String name;
     private String email;
     private String phoneNum;
 
@@ -26,12 +26,15 @@ public class MemberVO {
                         /**
                          * 회원 상세 정보
                          * */
+                        .name(this.name)
+                        .email(this.email)
+                        .phoneNum(this.phoneNum)
                         .build())
                 .build();
     }
 
-    public CustomUserDetails toMemberAuth() {
-        return CustomUserDetails.builder()
+    public MemberAuth toMemberAuth() {
+        return MemberAuth.builder()
                 .username(this.username)
                 .password(this.password)
                 .authority(Role.MEMBER)

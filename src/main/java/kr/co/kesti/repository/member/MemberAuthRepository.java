@@ -1,10 +1,10 @@
 package kr.co.kesti.repository.member;
 
-import kr.co.kesti.security.CustomUserDetails;
+import kr.co.kesti.domain.entity.MemberAuth;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MemberAuthRepository extends JpaRepository<CustomUserDetails, Long> {
-    CustomUserDetails findByUsername(final String username);
+public interface MemberAuthRepository extends JpaRepository<MemberAuth, String> {
+    MemberAuth findByUsername(final String username);
 }

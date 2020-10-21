@@ -2,6 +2,7 @@ package kr.co.kesti.controller;
 
 import kr.co.kesti.domain.embed.MemberInfo;
 import kr.co.kesti.domain.entity.Member;
+import kr.co.kesti.domain.entity.MemberAuth;
 import kr.co.kesti.model.response.ApiResponse;
 import kr.co.kesti.service.MemberService;
 import kr.co.kesti.vo.MemberVO;
@@ -18,6 +19,12 @@ import java.util.Map;
 public class MemberController {
     @Resource(name = "memberService")
     private MemberService memberService;
+
+    @PostMapping("/findByUsername")
+    public ApiResponse<?> findByUsername(@RequestParam("username") final String username) {
+        MemberAuth memberAuth = this.memberService.findByUsername(username);
+        return ApiResponse.ok();
+    }
 
     @PostMapping("/checkUsername")
     public ApiResponse<?> checkUsername(@RequestParam("username") final String username) {
