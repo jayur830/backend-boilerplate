@@ -1,10 +1,9 @@
-server:
-  port: 9000
 spring:
   profiles:
     active: local
+#    active: dev
   application:
-    name: BACKEND-BOILERPLATE
+    name: {application-name}
   jackson:
     default-property-inclusion: NON_NULL
   datasource:
@@ -12,8 +11,8 @@ spring:
       max-lifetime: 300000
       maximum-pool-size: 10
       minimum-idle: 3
-      pool-name: BACKEND
-      schema: test
+      pool-name: {pool-name}
+      schema: {database-schema}
   jpa:
     hibernate:
 #      ddl-auto: create
@@ -32,8 +31,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: jayur830@gmail.com
-    password: fcjpcrnxcxndbpzn
+    username: {username}@gmail.com
+    password: {password}
     properties:
       mail:
         smtp:
@@ -56,13 +55,13 @@ mybatis:
 
 ---
 server:
-  port: 9000
+  port: {local-port}
 spring:
   profiles: local
   datasource:
-    # ==== MySQL ====
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
+#    # ==== MySQL ====
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://{host}:{port=3306}/{database}?serverTimezone=UTC
 #
 #    # ==== Oracle ====
 #    driver-class-name: oracle.jdbc.driver.OracleDriver
@@ -79,14 +78,14 @@ spring:
 #    # ==== MS-SQL ====
 #    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 #    url: jdbc:sqlserver://{host}:{port=1433}/{database}
-    username: root
-    password: wlfkfgksek95+
+    username: {username}
+    password: {password}
   jpa:
     properties:
       hibernate:
         show_sql: true
         format_sql: true
-        dialect: org.hibernate.dialect.MySQL5Dialect
+#        dialect: org.hibernate.dialect.MySQL5Dialect
 #        dialect: org.hibernate.dialect.OracleDialect
 #        dialect: org.hibernate.dialect.PostgreSQLDialect
 #        dialect: org.hibernate.dialect.H2Dialect
@@ -95,16 +94,16 @@ logging:
   level:
     kr.co.kesti: debug
 cors:
-  allowed-domains: http://localhost:8080
+  allowed-domains: {url}
 ---
 server:
   port: {dev-port}
 spring:
   profiles: dev
   datasource:
-    # ==== MySQL ====
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://{host}:{port=3306}/{database}?serverTimezone=UTC
+#    # ==== MySQL ====
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://{host}:{port=3306}/{database}?serverTimezone=UTC
 #
 #    # ==== Oracle ====
 #    driver-class-name: oracle.jdbc.driver.OracleDriver
@@ -128,7 +127,7 @@ spring:
       hibernate:
         show_sql: false
         format_sql: false
-        dialect: org.hibernate.dialect.MySQL5Dialect
+#        dialect: org.hibernate.dialect.MySQL5Dialect
 #        dialect: org.hibernate.dialect.OracleDialect
 #        dialect: org.hibernate.dialect.PostgreSQLDialect
 #        dialect: org.hibernate.dialect.H2Dialect
@@ -137,16 +136,16 @@ logging:
   level:
     kr.co.kesti: info
 cors:
-  allowed-domains: http://{host}:{port}
+  allowed-domains: {url}
 ---
 server:
   port: {prd-port}
 spring:
   profiles: prd
   datasource:
-    # ==== MySQL ====
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://{host}:{port=3306}/{database}?serverTimezone=UTC
+#    # ==== MySQL ====
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://{host}:{port=3306}/{database}?serverTimezone=UTC
 #
 #    # ==== Oracle ====
 #    driver-class-name: oracle.jdbc.driver.OracleDriver
@@ -170,7 +169,7 @@ spring:
       hibernate:
         show_sql: false
         format_sql: false
-        dialect: org.hibernate.dialect.MySQL5Dialect
+#        dialect: org.hibernate.dialect.MySQL5Dialect
 #        dialect: org.hibernate.dialect.OracleDialect
 #        dialect: org.hibernate.dialect.PostgreSQLDialect
 #        dialect: org.hibernate.dialect.H2Dialect
@@ -179,4 +178,4 @@ logging:
   level:
     kr.co.kesti: info
 cors:
-  allowed-domains: http://{host}:{port}
+  allowed-domains: {url}

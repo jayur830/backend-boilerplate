@@ -8,10 +8,12 @@ import kr.co.kesti.repository.member.MemberRepository;
 import kr.co.kesti.service.MemberService;
 import kr.co.kesti.utils.CryptoUtils;
 import kr.co.kesti.utils.MailUtils;
+import kr.co.kesti.utils.MessageUtils;
 import kr.co.kesti.utils.ResourceUtils;
 import kr.co.kesti.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,9 @@ import java.io.IOException;
 @Slf4j
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
+    @Value("${spring.mail.username}")
+    private String emailFromAddress;
+
     @Resource(name = "passwordEncoder")
     private PasswordEncoder passwordEncoder;
     @Resource(name = "memberRepository")
@@ -63,9 +68,9 @@ public class MemberServiceImpl implements MemberService {
             String emailContents = ResourceUtils.readText("/templates/findPasswordHTML.html");
             emailContents = emailContents.replace("${newPassword}", newPassword);
             MailUtils.sendEmail(
-                    "kesti@gmail.com",
+                    this.emailFromAddress,
                     email,
-                    "Title",
+                    MessageUtils.getMessage("mail.findPassword.title"),
                     emailContents,
                     true);
         } catch (IOException e) {
