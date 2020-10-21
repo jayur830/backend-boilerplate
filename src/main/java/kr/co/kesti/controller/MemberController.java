@@ -23,7 +23,7 @@ public class MemberController {
     @PostMapping("/findByUsername")
     public ApiResponse<?> findByUsername(@RequestParam("username") final String username) {
         MemberAuth memberAuth = this.memberService.findByUsername(username);
-        return ApiResponse.ok();
+        return ApiResponse.ok(memberAuth.toObject());
     }
 
     @PostMapping("/checkUsername")

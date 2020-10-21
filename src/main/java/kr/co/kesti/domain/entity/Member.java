@@ -4,6 +4,8 @@ import kr.co.kesti.domain.embed.MemberInfo;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 @Getter
@@ -23,4 +25,15 @@ public class Member {
     @OneToOne
     @JoinColumn(name = "username")
     private MemberAuth memberAuth;
+
+    public Map<String, Object> toObject() {
+        Map<String, Object> object = new HashMap<>();
+
+        object.put("username", this.username);
+        object.put("name", this.memberInfo.getName());
+        object.put("email", this.memberInfo.getEmail());
+        object.put("phoneNum", this.memberInfo.getPhoneNum());
+
+        return object;
+    }
 }

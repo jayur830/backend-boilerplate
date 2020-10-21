@@ -8,10 +8,6 @@ spring:
   jackson:
     default-property-inclusion: NON_NULL
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
-    username: root
-    password: wlfkfgksek95+
     hikari:
       max-lifetime: 300000
       maximum-pool-size: 10
@@ -20,13 +16,12 @@ spring:
       schema: test
   jpa:
     hibernate:
-      ddl-auto: create
-#      ddl-auto: none
+#      ddl-auto: create
+      ddl-auto: none
       naming:
         physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
         jdbc:
           time_zone: Asia/Seoul
   servlet:
@@ -64,11 +59,38 @@ server:
   port: 9000
 spring:
   profiles: local
+  datasource:
+    # ==== MySQL ====
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
+#
+#    # ==== Oracle ====
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+#    url: jdbc:oracle:thin:@{host}:{port=1521}:{database}
+#
+#    # ==== PostgreSQL ====
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://{host}:{port=5432}/{database}
+#
+#    # ==== H2 ====
+#    driver-class-name: org.h2.Driver
+#    url: jdbc:h2:tcp://{host}:{port=5435}/mem:{database}
+#
+#    # ==== MS-SQL ====
+#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    url: jdbc:sqlserver://{host}:{port=1433}/{database}
+    username: root
+    password: wlfkfgksek95+
   jpa:
     properties:
       hibernate:
         show_sql: true
         format_sql: true
+        dialect: org.hibernate.dialect.MySQL5Dialect
+#        dialect: org.hibernate.dialect.OracleDialect
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        dialect: org.hibernate.dialect.H2Dialect
+#        dialect: org.hibernate.dialect.SQLServerDialect
 logging:
   level:
     kr.co.kesti: debug
@@ -76,14 +98,41 @@ cors:
   allowed-domains: http://localhost:8080
 ---
 server:
-  port: 9000
+  port: {dev-port}
 spring:
   profiles: dev
+  datasource:
+    # ==== MySQL ====
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://{host}:{port=3306}/{database}?serverTimezone=UTC
+#
+#    # ==== Oracle ====
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+#    url: jdbc:oracle:thin:@{host}:{port=1521}:{database}
+#
+#    # ==== PostgreSQL ====
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://{host}:{port=5432}/{database}
+#
+#    # ==== H2 ====
+#    driver-class-name: org.h2.Driver
+#    url: jdbc:h2:tcp://{host}:{port=5435}/mem:{database}
+#
+#    # ==== MS-SQL ====
+#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    url: jdbc:sqlserver://{host}:{port=1433}/{database}
+    username: {username}
+    password: {password}
   jpa:
     properties:
       hibernate:
         show_sql: false
         format_sql: false
+        dialect: org.hibernate.dialect.MySQL5Dialect
+#        dialect: org.hibernate.dialect.OracleDialect
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        dialect: org.hibernate.dialect.H2Dialect
+#        dialect: org.hibernate.dialect.SQLServerDialect
 logging:
   level:
     kr.co.kesti: info
@@ -91,14 +140,41 @@ cors:
   allowed-domains: http://{host}:{port}
 ---
 server:
-  port: 9000
+  port: {prd-port}
 spring:
   profiles: prd
+  datasource:
+    # ==== MySQL ====
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://{host}:{port=3306}/{database}?serverTimezone=UTC
+#
+#    # ==== Oracle ====
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+#    url: jdbc:oracle:thin:@{host}:{port=1521}:{database}
+#
+#    # ==== PostgreSQL ====
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://{host}:{port=5432}/{database}
+#
+#    # ==== H2 ====
+#    driver-class-name: org.h2.Driver
+#    url: jdbc:h2:tcp://{host}:{port=5435}/mem:{database}
+#
+#    # ==== MS-SQL ====
+#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    url: jdbc:sqlserver://{host}:{port=1433}/{database}
+    username: {username}
+    password: {password}
   jpa:
     properties:
       hibernate:
         show_sql: false
         format_sql: false
+        dialect: org.hibernate.dialect.MySQL5Dialect
+#        dialect: org.hibernate.dialect.OracleDialect
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        dialect: org.hibernate.dialect.H2Dialect
+#        dialect: org.hibernate.dialect.SQLServerDialect
 logging:
   level:
     kr.co.kesti: info

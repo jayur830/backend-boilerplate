@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 @Getter
@@ -32,4 +34,18 @@ public class MemberAuth {
 
     @OneToOne(mappedBy = "memberAuth")
     private Member member;
+
+    public Map<String, Object> toObject() {
+        Map<String, Object> object = new HashMap<>();
+
+        object.put("username", this.username);
+        object.put("password", this.password);
+        object.put("authority", this.authority);
+        object.put("accountExpired", this.accountExpired);
+        object.put("accountLocked", this.accountLocked);
+        object.put("credentialsExpired", this.credentialsExpired);
+        object.put("enabled", this.enabled);
+
+        return object;
+    }
 }
