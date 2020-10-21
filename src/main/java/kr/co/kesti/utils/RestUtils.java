@@ -28,8 +28,8 @@ public class RestUtils {
      * @param url 요청 URL
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendGETRestFul(final String url) {
-        return sendGETRestFul(url, null);
+    public static ResponseEntity<?> get(final String url) {
+        return get(url, null);
     }
 
     /**
@@ -37,10 +37,10 @@ public class RestUtils {
      * @param requestParams 요청 파라미터
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendGETRestFul(
+    public static ResponseEntity<?> get(
             final String url,
             MultiValueMap<String, String> requestParams) {
-        return sendGETRestFul(url, requestParams, String.class);
+        return get(url, requestParams, String.class);
     }
 
     /**
@@ -49,11 +49,11 @@ public class RestUtils {
      * @param responseType 응답 타입 (json, xml - Map.class | html, text - String.class)
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendGETRestFul(
+    public static ResponseEntity<?> get(
             final String url,
             MultiValueMap<String, String> requestParams,
             Class<?> responseType) {
-        return sendGETRestFul(url, requestParams, responseType, null);
+        return get(url, requestParams, responseType, null);
     }
 
     /**
@@ -63,12 +63,12 @@ public class RestUtils {
      * @param header RESTful 통신 시 전달할 헤더 정보
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendGETRestFul(
+    public static ResponseEntity<?> get(
             final String url,
             MultiValueMap<String, String> requestParams,
             Class<?> responseType,
             HttpHeaders header) {
-        return sendGETRestFul(url, requestParams, responseType, header, DEFAULT_TIME_OUT);
+        return get(url, requestParams, responseType, header, DEFAULT_TIME_OUT);
     }
 
     /**
@@ -79,13 +79,13 @@ public class RestUtils {
      * @param timeout 타임아웃 설정 시간
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendGETRestFul(
+    public static ResponseEntity<?> get(
             final String url,
             MultiValueMap<String, String> requestParams,
             Class<?> responseType,
             HttpHeaders header,
             final int timeout) {
-        return sendRestFul(url, requestParams, responseType, header, timeout, HttpMethod.GET);
+        return sendRESTful(url, requestParams, responseType, header, timeout, HttpMethod.GET);
     }
 
 
@@ -99,8 +99,8 @@ public class RestUtils {
      * @param url 요청 URL
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendPOSTRestFul(final String url) {
-        return sendPOSTRestFul(url, null);
+    public static ResponseEntity<?> post(final String url) {
+        return post(url, null);
     }
 
     /**
@@ -108,10 +108,10 @@ public class RestUtils {
      * @param requestParams 요청 파라미터
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendPOSTRestFul(
+    public static ResponseEntity<?> post(
             final String url,
             MultiValueMap<String, String> requestParams) {
-        return sendPOSTRestFul(url, requestParams, String.class);
+        return post(url, requestParams, String.class);
     }
 
     /**
@@ -120,11 +120,11 @@ public class RestUtils {
      * @param responseType 응답 타입 (json, xml - Map.class | html, text - String.class)
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendPOSTRestFul(
+    public static ResponseEntity<?> post(
             final String url,
             MultiValueMap<String, String> requestParams,
             Class<?> responseType) {
-        return sendPOSTRestFul(url, requestParams, responseType, null);
+        return post(url, requestParams, responseType, null);
     }
 
     /**
@@ -134,12 +134,12 @@ public class RestUtils {
      * @param header RESTful 통신 시 전달할 헤더 정보
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendPOSTRestFul(
+    public static ResponseEntity<?> post(
             final String url,
             MultiValueMap<String, String> requestParams,
             Class<?> responseType,
             HttpHeaders header) {
-        return sendPOSTRestFul(url, requestParams, responseType, header, DEFAULT_TIME_OUT);
+        return post(url, requestParams, responseType, header, DEFAULT_TIME_OUT);
     }
 
     /**
@@ -150,13 +150,13 @@ public class RestUtils {
      * @param timeout 타임아웃 설정 시간
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendPOSTRestFul(
+    public static ResponseEntity<?> post(
             final String url,
             MultiValueMap<String, String> requestParams,
             Class<?> responseType,
             HttpHeaders header,
             final int timeout) {
-        return sendRestFul(url, requestParams, responseType, header, timeout, HttpMethod.POST);
+        return sendRESTful(url, requestParams, responseType, header, timeout, HttpMethod.POST);
     }
 
 
@@ -170,8 +170,8 @@ public class RestUtils {
      * @param url 요청 URL
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendPUTRestFul(final String url) {
-        return sendPUTRestFul(url, null);
+    public static ResponseEntity<?> put(final String url) {
+        return put(url, null);
     }
 
     /**
@@ -179,10 +179,10 @@ public class RestUtils {
      * @param requestParams 요청 파라미터
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendPUTRestFul(
+    public static ResponseEntity<?> put(
             final String url,
             MultiValueMap<String, String> requestParams) {
-        return sendPUTRestFul(url, requestParams, String.class);
+        return put(url, requestParams, String.class);
     }
 
     /**
@@ -191,11 +191,11 @@ public class RestUtils {
      * @param responseType 응답 타입 (json, xml - Map.class | html, text - String.class)
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendPUTRestFul(
+    public static ResponseEntity<?> put(
             final String url,
             MultiValueMap<String, String> requestParams,
             Class<?> responseType) {
-        return sendPUTRestFul(url, requestParams, responseType, null);
+        return put(url, requestParams, responseType, null);
     }
 
     /**
@@ -205,12 +205,12 @@ public class RestUtils {
      * @param header RESTful 통신 시 전달할 헤더 정보
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendPUTRestFul(
+    public static ResponseEntity<?> put(
             final String url,
             MultiValueMap<String, String> requestParams,
             Class<?> responseType,
             HttpHeaders header) {
-        return sendPUTRestFul(url, requestParams, responseType, header, DEFAULT_TIME_OUT);
+        return put(url, requestParams, responseType, header, DEFAULT_TIME_OUT);
     }
 
     /**
@@ -221,13 +221,13 @@ public class RestUtils {
      * @param timeout 타임아웃 설정 시간
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendPUTRestFul(
+    public static ResponseEntity<?> put(
             final String url,
             MultiValueMap<String, String> requestParams,
             Class<?> responseType,
             HttpHeaders header,
             final int timeout) {
-        return sendRestFul(url, requestParams, responseType, header, timeout, HttpMethod.PUT);
+        return sendRESTful(url, requestParams, responseType, header, timeout, HttpMethod.PUT);
     }
 
 
@@ -241,8 +241,8 @@ public class RestUtils {
      * @param url 요청 URL
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendDELETERestFul(final String url) {
-        return sendDELETERestFul(url, null);
+    public static ResponseEntity<?> delete(final String url) {
+        return delete(url, null);
     }
 
     /**
@@ -250,10 +250,10 @@ public class RestUtils {
      * @param requestParams 요청 파라미터
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendDELETERestFul(
+    public static ResponseEntity<?> delete(
             final String url,
             MultiValueMap<String, String> requestParams) {
-        return sendDELETERestFul(url, requestParams, String.class);
+        return delete(url, requestParams, String.class);
     }
 
     /**
@@ -262,11 +262,11 @@ public class RestUtils {
      * @param responseType 응답 타입 (json, xml - Map.class | html, text - String.class)
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendDELETERestFul(
+    public static ResponseEntity<?> delete(
             final String url,
             MultiValueMap<String, String> requestParams,
             Class<?> responseType) {
-        return sendDELETERestFul(url, requestParams, responseType, null);
+        return delete(url, requestParams, responseType, null);
     }
 
     /**
@@ -276,12 +276,12 @@ public class RestUtils {
      * @param header RESTful 통신 시 전달할 헤더 정보
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendDELETERestFul(
+    public static ResponseEntity<?> delete(
             final String url,
             MultiValueMap<String, String> requestParams,
             Class<?> responseType,
             HttpHeaders header) {
-        return sendDELETERestFul(url, requestParams, responseType, header, DEFAULT_TIME_OUT);
+        return delete(url, requestParams, responseType, header, DEFAULT_TIME_OUT);
     }
 
     /**
@@ -292,13 +292,13 @@ public class RestUtils {
      * @param timeout 타임아웃 설정 시간
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    public static ResponseEntity<?> sendDELETERestFul(
+    public static ResponseEntity<?> delete(
             final String url,
             MultiValueMap<String, String> requestParams,
             Class<?> responseType,
             HttpHeaders header,
             final int timeout) {
-        return sendRestFul(url, requestParams, responseType, header, timeout, HttpMethod.DELETE);
+        return sendRESTful(url, requestParams, responseType, header, timeout, HttpMethod.DELETE);
     }
 
 
@@ -312,7 +312,7 @@ public class RestUtils {
      * @param httpMethod HTTP 메소드 (GET, POST, PUT, DELETE)
      * @return ResponseEntity<?> - 응답 객체, 헤더 정보와 바디 정보가 리턴됨
      */
-    private static ResponseEntity<?> sendRestFul(
+    private static ResponseEntity<?> sendRESTful(
             String url,
             MultiValueMap<String, String> requestParams,
             Class<?> responseType,
