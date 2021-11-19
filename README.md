@@ -1,4 +1,4 @@
-# KESTI Backend Boilerplate
+# Backend Boilerplate
 ### Description
 {} 안에 있는 내용 수정 필요
 ```yaml
